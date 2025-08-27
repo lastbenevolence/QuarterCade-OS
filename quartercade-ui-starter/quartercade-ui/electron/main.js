@@ -24,6 +24,6 @@ function createWindow() {
     win.webContents.send("qc:stats", stats);
   });
 }
-
+app.disableHardwareAcceleration();
 app.whenReady().then(createWindow);
 app.on("window-all-closed", () => { stopStatsLoop(); app.quit(); });
