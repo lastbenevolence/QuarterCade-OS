@@ -16,6 +16,8 @@ function createWindow() {
     }
   });
 
+win.webContents.openDevTools(); // TEMP: shows console errors
+
   const url = process.env.VITE_DEV_SERVER_URL || `file://${path.join(process.cwd(), "dist/index.html")}`;
   win.loadURL(url);
 
@@ -24,6 +26,7 @@ function createWindow() {
     win.webContents.send("qc:stats", stats);
   });
 }
+
 app.disableHardwareAcceleration();
 app.whenReady().then(createWindow);
 app.on("window-all-closed", () => { stopStatsLoop(); app.quit(); });
